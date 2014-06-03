@@ -1,95 +1,182 @@
-snippet main
-	public static void main (String [] args)
-	{
-		${1:/* code */}
+#----------------Comments------------------------------------------------
+snippet	version
+	/*
+	 * ${1:Comments}
+	 * @author Damian McNulty
+	 * @version ${2:1.0}
+	 * @since ${3:`strftime("%d/%m/%y %H:%M:%S")`}
+	 * @file ${4: `Filename()`}.java
+	 *
+	 */
+snippet /*
+	/*
+	 * ${1}
+	 *
+	 */
+snippet jd
+	/**
+	 * ${1:Comments}
+	 * @author Damian McNulty
+	 * @version ${2:1.0}
+	 * @since ${3:`strftime("%d/%m/%y %H:%M:%S")`}
+	 */
+#------------------------------------------------------------------------
+#-----------------Declarations-------------------------------------------
+snippet cl
+	${1:public }class ${2:`fnamemodify(bufname("%"), ":t:r")`}{
+
+		${3:public} $2(${4:params)}{
+		${1:/*code*/}
+		}
 	}
-snippet pu
-	public
-snippet po
-	protected
-snippet pr
-	private
-snippet st
-	static
-snippet fi
-	final
-snippet ab
-	abstract
-snippet re
-	return
-snippet br
-	break;
-snippet de
-	default:
-		${1}
-snippet ca
-	catch(${1:Exception} ${2:e}) ${3}
-snippet th
-	throw 
-snippet sy
-	synchronized
-snippet im
-	import
-snippet imp
-	implements
-snippet ext
-	extends 
-snippet j.u
-	java.util
-snippet j.i
-	java.io.
-snippet j.b
-	java.beans.
-snippet j.n
-	java.net.
-snippet j.m
-	java.math.
-snippet if
-	if (${1}) ${2}
-snippet el
-	else 
-snippet elif
-	else if (${1}) ${2}
-snippet wh
-	while (${1}) ${2}
-snippet for
-	for (${1}; ${2}; ${3}) ${4}
-snippet fore
-	for (${1} : ${2}) ${3}
-snippet sw
-	switch (${1}) ${2}
-snippet cs
-	case ${1}:
-		${2}
-	${3}
+snippet in
+	interface ${1:`Filename("", "untitled")`} ${2:extends Parent}${3}
 snippet tc
 	public class ${1:`Filename()`} extends ${2:TestCase}
 snippet t
 	public void test${1:Name}() throws Exception ${2}
-snippet cl
-	class ${1:`Filename("", "untitled")`} ${2}
-snippet in
-	interface ${1:`Filename("", "untitled")`} ${2:extends Parent}${3}
-snippet m
-	${1:void} ${2:method}(${3}) ${4:throws }${5}
-snippet v
-	${1:String} ${2:var}${3: = null}${4};${5}
-snippet co
+#------------------------------------------------------------------------
+#-----------------Constants----------------------------------------------
+snippet constant
 	static public final ${1:String} ${2:var} = ${3};${4}
 snippet cos
 	static public final String ${1:var} = "${2}";${3}
-snippet as
-	assert ${1:test} : "${2:Failure message}";${3}
+#------------------------------------------------------------------------
+#-------------------Enums------------------------------------------------
+snippet enum
+	enum ${1:Status} = {${2}, ${3}, ${4}};
+#------------------------------------------------------------------------
+#---------------Variables------------------------------------------------
+snippet v
+	${1:String} ${2:var}${3: = null}${4};${5}
+#------------------------------------------------------------------------
+#-----------------Methods------------------------------------------------
+snippet main
+	public static void main (String [] args){
+		${1:/* code */}
+	}
+snippet method
+	/**
+	 * @return ${6:type}
+		* @params ${4:params}
+		*/
+	${1:public} ${2:void} ${3:method}(${4:params}){
+
+		${5:/* code */}
+	return ${6:type}
+	}
+#------------------------------------------------------------------------
+#-----------------New Object---------------------------------------------
+snippet new
+	${1:Type} ${2:ref} ${3: = new $1}(${4:params});
+#------------------------------------------------------------------------
+#-----------------Conditional Statements---------------------------------
+snippet if
+	if(${1}){
+	$2	
+	}
+snippet else
+	else{
+	${1}
+	}
+snippet elseif
+	else if(${1}){
+	${2}
+	}
+snippet sw
+	switch (${1}){
+	$2
+	}
+snippet switch
+	switch(${1:expression}){
+	case ${2:val}:
+	$3
+	break;
+	$4
+	default:
+	$5
+	}
+snippet case
+	case ${1}:
+	${2}
+	${3}
+snippet ?
+	($1 ? $2 : $3)
+#------------------------------------------------------------------------
+#-----------------Repetition---------------------------------------------
+snippet while
+	while($1){
+	$2
+	}
+snippet for
+	for (int ${2:i} = 0;$2 < ${1:count}; $2${3:++}){
+	${4:/*code*/}
+	}
+snippet fore
+	for (${1} : ${2}){
+	$3
+	}
+snippet do
+	int ${1:counter} = 0;
+	do{
+	$2
+	++${3:counter};
+	}while(${4:counter} < 10);
+#------------------------------------------------------------------------
+#---------------------Exception Handling----------------------------------
+snippet ca
+	catch(${1:Exception} ${2:e}) ${3}
+snippet th
+	throw 
 snippet try
 	try {
 		${3}
 	} catch(${1:Exception} ${2:e}) {
 	}
-snippet tryf
+snippet trycf
 	try {
 		${3}
 	} catch(${1:Exception} ${2:e}) {
+
 	} finally {
+		${4}
 	}
+snippet tryf
+	try {
+		${1}
+	} finally {
+		${2}
+	}
+#------------------------------------------------------------------------
+snippet assert
+	assert ${1:test} : "${2:Failure message}";${3}
+#------------------------------------------------------------------------
+#-----------Database-----------------------------------------------------
 snippet rst
 	ResultSet ${1:rst}${2: = null}${3};${4}
+#------------------------------------------------------------------------
+#-----------Print Statements---------------------------------------------
+snippet sop
+	System.out.println("${1}");
+#------------------------------------------------------------------------
+#---------------Input----------------------------------------------------
+snippet scanner
+	Scanner in = new Scanner(System.in);
+snippet nextInt
+	in.nextInt();
+snippet nextLine
+	in.nextLine();
+snippet nextDouble
+	in.nextDouble();
+snippet hasNext
+	in.hasNext();
+#-----------Data Structures----------------------------------------------
+#------------------------------------------------------------------------
+snippet array
+	${1:String}[] ${2:name}${3: = new $1}[${4:length}];
+#------------------------------------------------------------------------
+snippet eof
+	/*
+	 * @since ${1:`strftime("%d/%m/%y %H:%M:%S")`}
+	 */
+#------------------------------------------------------------------------
