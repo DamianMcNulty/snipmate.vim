@@ -98,11 +98,11 @@ snippet case
 	${2}
 	${3}
 snippet ?
-	($1 ? $2 : $3)
+	${1:String} ${2:s} = ( ${3:expression} ? ${4:ifTrueAssign} : ${5:ifFalseAssign} );
 #------------------------------------------------------------------------
 #-----------------Repetition---------------------------------------------
 snippet while
-	while($1){
+	while( $1 ){
 	$2
 	}
 snippet for
